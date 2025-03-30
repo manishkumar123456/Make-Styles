@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import { useTheme } from '../context/ThemeContext';
 
 interface TextControlsProps {
@@ -177,7 +177,7 @@ export function TextControls({
               {transformOptions.map(({ label, value }) => (
                 <button
                   key={value}
-                  onClick={() => onTextTransformChange(value as any)}
+                  onClick={() => onTextTransformChange(value as 'none' | 'uppercase' | 'lowercase' | 'capitalize')}
                   className={`py-2 px-3 rounded-lg transition-all ${
                     textTransform === value
                       ? 'bg-blue-500 text-white'

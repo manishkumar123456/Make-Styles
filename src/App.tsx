@@ -11,6 +11,8 @@ import { Preview } from './components/Preview';
 import { ActionButtons } from './components/ActionButtons';
 import { TwitterTemplate } from './components/templates/TwitterTemplate';
 import { CodeTemplate } from './components/templates/CodeTemplate';
+import { VideoTemplate } from './components/templates/VideoTemplate';
+import { HomePage } from './components/HomePage';
 import { useTheme } from './context/ThemeContext';
 import html2canvas from 'html2canvas';
 
@@ -18,6 +20,9 @@ function App() {
   const { theme } = useTheme();
   const previewRef = useRef(null);
 
+  // View state
+  const [currentView, setCurrentView] = useState<'home' | 'editor'>('home');
+  
   // Tab state
   const [activeTab, setActiveTab] = useState('Text');
   
@@ -30,7 +35,7 @@ function App() {
   const [textAlign, setTextAlign] = useState<'left' | 'center' | 'right'>('center');
   const [textShadow, setTextShadow] = useState('none');
   const [textTransform, setTextTransform] = useState<'none' | 'uppercase' | 'lowercase' | 'capitalize'>('none');
-  const [textColor, setTextColor] = useState('#FF0000');
+  const [textColor, setTextColor] = useState('#FFFFFF');
 
   // Code template state
   const [code, setCode] = useState('console.log("Hello, World!");');
@@ -55,7 +60,7 @@ function App() {
   // Size and background state
   const [selectedSize, setSelectedSize] = useState('Desktop');
   const [backgroundImage, setBackgroundImage] = useState('');
-  const [templateType, setTemplateType] = useState<'default' | 'twitter' | 'code'>('default');
+  const [templateType, setTemplateType] = useState<'default' | 'twitter' | 'code' | 'video'>('default');
 
   // History state for undo
   const [history, setHistory] = useState<Array<{
@@ -76,6 +81,16 @@ function App() {
     setCurrentIndex(currentIndex + 1);
   };
 
+  // Generate random gradient
+  const generateRandomGradient = () => {
+    const randomColor = () => '#' + Math.floor(Math.random()*16777215).toString(16);
+    const c1 = randomColor();
+    const c2 = randomColor();
+    setColor1(c1);
+    setColor2(c2);
+    updateGradient(c1, c2);
+  };
+
   // Reset function
   const handleReset = () => {
     setText('Your text here');
@@ -86,7 +101,7 @@ function App() {
     setTextAlign('center');
     setTextShadow('none');
     setTextTransform('none');
-    setTextColor('#ffffff');
+    setTextColor('#FFFFFF');
     setColor1('#4158D0');
     setColor2('#C850C0');
     setAngle(45);
@@ -106,6 +121,7 @@ function App() {
 
   // Template selection handler
   const handleTemplateSelect = (template: string) => {
+    setCurrentView('editor');
     if (template === 'Twitter Screenshot') {
       setText('the thing about artists is they make simple and boring ideas interesting');
       setTemplateType('twitter');
@@ -113,10 +129,17 @@ function App() {
       setTemplateType('code');
       setCode('function fibonacci(n) {\n  if (n <= 1) return n;\n  return fibonacci(n - 1) + fibonacci(n - 2);\n}');
       setLanguage('javascript');
+    } else if (template === 'Video Template') {
+      setTemplateType('video');
+      setText('Your Awesome Video Title');
     } else {
       setTemplateType('default');
     }
   };
+
+  if (currentView === 'home') {
+    return <HomePage onTemplateSelect={handleTemplateSelect} />;
+  }
 
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-[#0f0f0f] text-white' : 'bg-gray-100 text-gray-900'} flex flex-col md:flex-row overflow-hidden`}>
@@ -227,7 +250,7 @@ function App() {
           <Navbar 
             onReset={handleReset} 
             onTemplateSelect={handleTemplateSelect}
-            onHomeClick={handleReset}
+            onHomeClick={() => setCurrentView('home')}
           />
         </div>
         <div className="flex-1 p-6 overflow-y-auto">
@@ -260,6 +283,22 @@ function App() {
                 brightness={brightness}
                 contrast={contrast}
               />
+            ) : templateType === 'video' ? (
+              <VideoTemplate
+                text={text}
+                fontSize={fontSize}
+                fontFamily={fontFamily}
+                textColor={textColor}
+                blur={blur}
+                opacity={opacity}
+                rotation={rotation}
+                scale={scale}
+                skew={skew}
+                brightness={brightness}
+                contrast={contrast}
+                gradient={gradient}
+                onGenerateGradient={generateRandomGradient}
+              />
             ) : (
               <Preview
                 selectedSize={selectedSize}
@@ -286,14 +325,7 @@ function App() {
             )}
           </div>
           <ActionButtons 
-            onGenerateGradient={() => {
-              const randomColor = () => '#' + Math.floor(Math.random()*16777215).toString(16);
-              const c1 = randomColor();
-              const c2 = randomColor();
-              setColor1(c1);
-              setColor2(c2);
-              updateGradient(c1, c2);
-            }}
+            onGenerateGradient={generateRandomGradient}
             onBackgroundImage={() => {
               const input = document.createElement('input');
               input.type = 'file';
