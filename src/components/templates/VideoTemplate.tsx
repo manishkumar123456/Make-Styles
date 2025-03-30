@@ -59,7 +59,7 @@ export function VideoTemplate({
         reader.onload = (e) => {
           const result = e.target?.result as string;
           setBackgroundImage(result);
-          setUseGradient(false);
+          setUseGradient(true);
         };
         reader.readAsDataURL(file);
       }
