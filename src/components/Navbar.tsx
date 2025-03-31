@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Home, ChevronDown, RotateCcw } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -13,12 +13,25 @@ export function Navbar({ onReset, onTemplateSelect, onHomeClick }: NavbarProps) 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const templates = [
-    'Twitter Screenshot',
-    'Code Screenshot',
-    'Quote Design',
-    'Social Media Post',
-    'Banner Design'
+    'video',
+    'code',
+    'twitter',
+    'quote',
+    'social',
+    'banner'
   ];
+
+  const getTemplateName = (template: string) => {
+    const names: Record<string, string> = {
+      video: 'Video Template',
+      code: 'Code Screenshot',
+      twitter: 'Twitter Screenshot',
+      quote: 'Quote Design',
+      social: 'Social Media Post',
+      banner: 'Banner Design'
+    };
+    return names[template] || template;
+  };
 
   const buttonBaseClass = `px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 ${
     theme === 'dark' 
@@ -69,7 +82,7 @@ export function Navbar({ onReset, onTemplateSelect, onHomeClick }: NavbarProps) 
                     : 'hover:bg-gray-100'
                 } transition-colors duration-200`}
               >
-                {template}
+                {getTemplateName(template)}
               </button>
             ))}
           </div>
