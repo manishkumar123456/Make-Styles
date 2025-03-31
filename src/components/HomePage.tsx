@@ -131,17 +131,17 @@ export function HomePage() {
             <div className={`p-6 rounded-xl ${theme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-white'} transform hover:scale-105 transition-transform`}>
               <Sparkles className="w-12 h-12 text-blue-500 mb-4 mx-auto animate-pulse" />
               <h3 className="text-xl font-semibold mb-2">Beautiful Templates</h3>
-              <p className="text-gray-400">Choose from a variety of professionally designed templates</p>
+              <p className="text-gray-600">Choose from a variety of professionally designed templates</p>
             </div>
             <div className={`p-6 rounded-xl ${theme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-white'} transform hover:scale-105 transition-transform`}>
               <Layout className="w-12 h-12 text-purple-500 mb-4 mx-auto animate-pulse" />
               <h3 className="text-xl font-semibold mb-2">Customizable Layouts</h3>
-              <p className="text-gray-400">Adjust every aspect of your design with intuitive controls</p>
+              <p className="text-gray-600">Adjust every aspect of your design with intuitive controls</p>
             </div>
             <div className={`p-6 rounded-xl ${theme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-white'} transform hover:scale-105 transition-transform`}>
               <Image className="w-12 h-12 text-green-500 mb-4 mx-auto animate-pulse" />
               <h3 className="text-xl font-semibold mb-2">Export Options</h3>
-              <p className="text-gray-400">Download your designs in high-quality formats</p>
+              <p className="text-gray-600">Download your designs in high-quality formats</p>
             </div>
           </div>
         </div>
@@ -153,11 +153,11 @@ export function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <Logo />
-              <p className="mt-4 text-gray-400">Create beautiful screenshots and mockups for your projects</p>
+              <p className="mt-4 text-gray-600">Create beautiful screenshots and mockups for your projects</p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Product</h4>
-              <ul className="space-y-2 text-gray-400">
+              <ul className="space-y-2 text-gray-600">
                 <li>Features</li>
                 <li>Templates</li>
                 <li>Pricing</li>
@@ -166,7 +166,7 @@ export function HomePage() {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-400">
+              <ul className="space-y-2 text-gray-600">
                 <li>About</li>
                 <li>Blog</li>
                 <li>Careers</li>
@@ -176,13 +176,13 @@ export function HomePage() {
             <div>
               <h4 className="font-semibold mb-4">Connect</h4>
               <div className="flex gap-4">
-                <Github className="w-6 h-6 text-gray-400 hover:text-white transition-colors cursor-pointer" />
-                <Linkedin className="w-6 h-6 text-gray-400 hover:text-white transition-colors cursor-pointer" />
-                <Instagram className="w-6 h-6 text-gray-400 hover:text-white transition-colors cursor-pointer" />
+                <Github className="w-6 h-6 text-gray-600 hover:text-white transition-colors cursor-pointer" />
+                <Linkedin className="w-6 h-6 text-gray-600 hover:text-white transition-colors cursor-pointer" />
+                <Instagram className="w-6 h-6 text-gray-600 hover:text-white transition-colors cursor-pointer" />
               </div>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-600">
             <p>© 2024 Make-Styles. All rights reserved.</p>
           </div>
         </div>
