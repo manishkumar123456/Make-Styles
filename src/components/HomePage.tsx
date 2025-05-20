@@ -95,7 +95,7 @@ export function HomePage() {
             </h1>
           </div>
           <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto animate-fade-in-up">
-            Create stunning visuals for your projects with our easy-to-use editor
+          Brand your screenshots, amplify your message, engage your audience with Make.Styles. 
           </p>
         </div>
 
@@ -157,7 +157,7 @@ export function HomePage() {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Product</h4>
-              <ul className="space-y-2 text-gray-600">
+              <ul className="space-y-2 text-gray-600 cursor-pointer">
                 <li>Features</li>
                 <li>Templates</li>
                 <li>Pricing</li>
@@ -166,7 +166,7 @@ export function HomePage() {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-600">
+              <ul className="space-y-2 text-gray-600 cursor-pointer">
                 <li>About</li>
                 <li>Blog</li>
                 <li>Careers</li>
@@ -182,6 +182,11 @@ export function HomePage() {
               </div>
             </div>
           </div>
+           <div className=" w-full flex mt-4 items-center justify-center   ">
+          <h1 className="text-center text-3xl md:text-5xl lg:text-[10rem] font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-900 select-none">
+            MAKE-STYLES
+          </h1>
+        </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-600">
             <p>© 2024 Make-Styles. All rights reserved.</p>
           </div>
