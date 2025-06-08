@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 //import React from 'react';
-//import React from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { 
@@ -13,12 +14,14 @@ import {
   Video,
   Github,
   Linkedin,
-  Instagram
+  Instagram,
+  
+  //Upload
 } from 'lucide-react';
 import { Logo } from './Logo';
 
 export function HomePage() {
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   const templates = [
@@ -66,6 +69,10 @@ export function HomePage() {
     }
   ];
 
+  function handleBackgroundChange(_event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    throw new Error('Function not implemented.');
+  }
+
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-[#0f0f0f] text-white' : 'bg-gray-100 text-gray-900'}`}>
       {/* Header */}
@@ -74,13 +81,24 @@ export function HomePage() {
           <div className="flex justify-between items-center">
             <Logo />
             <div className="flex items-center gap-4">
-              <button className={`px-4 py-2 rounded-lg ${theme === 'dark' ? 'bg-[#1a1a1a] hover:bg-[#2a2a2a]' : 'bg-white hover:bg-gray-50'} transition-all`}>
-                Login
-              </button>
-              <button className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all">
-                Sign Up
-              </button>
-            </div>
+  
+  <button className={`px-4 py-2 rounded-lg ${theme === 'dark' ? 'bg-[#1a1a1a] hover:bg-[#2a2a2a]' : 'bg-white hover:bg-gray-50'} transition-all`}>
+    Login
+  </button>
+  <button className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all">
+    Sign Up
+  </button>
+  <button
+    onClick={toggleTheme}
+    className={`px-3 py-2 rounded-lg border ${
+      theme === 'dark'
+        ? 'bg-[#1a1a1a] text-white border-gray-600 hover:bg-[#2a2a2a]'
+        : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-100'
+    } transition-all`}
+  >
+    {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+  </button>
+</div>
           </div>
         </div>
       </header>
@@ -190,6 +208,17 @@ export function HomePage() {
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-600">
             <p>© 2024 Make-Styles. All rights reserved.</p>
           </div>
+           <button
+          onClick={handleBackgroundChange}
+          className={`p-2 rounded-lg ${
+            theme === 'dark' 
+              ? 'bg-gray-800 hover:bg-gray-700' 
+              : 'bg-white hover:bg-gray-100'
+          } transition-colors`}
+          title="Upload Background"
+        >
+          
+        </button>
         </div>
       </footer>
     </div>
