@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import { Wand2, Image, Undo } from 'lucide-react';
 
 interface ActionButtonsProps {
@@ -18,14 +18,14 @@ export function ActionButtons({
     <div className="flex gap-4 mt-6 justify-center">
       <button
         onClick={onGenerateGradient}
-        className="px-6 py-2 rounded-lg bg-[#2a2a2a] flex items-center gap-2 hover:bg-[#3a3a3a] transition-colors"
+        className="px-6 py-2 rounded-lg bg-[#39af31] flex items-center gap-2 hover:bg-[#3e854c] transition-colors"
       >
         <Wand2 size={20} />
         Generate Gradient
       </button>
       <button 
         onClick={onBackgroundImage}
-        className="px-6 py-2 rounded-lg bg-[#2a2a2a] flex items-center gap-2 hover:bg-[#3a3a3a] transition-colors"
+        className="px-6 py-2 rounded-lg bg-[#e63dc7] flex items-center gap-2 hover:bg-[#d945d2] transition-colors"
       >
         <Image size={20} />
         Background Image
@@ -35,8 +35,8 @@ export function ActionButtons({
         disabled={!canUndo}
         className={`px-6 py-2 rounded-lg flex items-center gap-2 transition-colors ${
           canUndo 
-            ? 'bg-[#2a2a2a] hover:bg-[#3a3a3a]' 
-            : 'bg-[#2a2a2a] opacity-50 cursor-not-allowed'
+            ? 'bg-[#2d95ea] hover:bg-[#3a3a3a]' 
+            : 'bg-[#bfe72f] opacity-50 cursor-not-allowed'
         }`}
       >
         <Undo size={20} />
@@ -45,3 +45,10 @@ export function ActionButtons({
     </div>
   );
 }
+
+
+
+
+
+
+
