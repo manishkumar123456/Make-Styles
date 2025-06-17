@@ -107,7 +107,7 @@ export function HomePage() {
         {/* Hero Section */}
         <div className="text-center mb-16 animate-fade-in">
           <div className="relative">
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg blur opacity-30 animate-pulse"></div>
+            <div className="absolute -inset-1  animate-pulse"></div>
             <h1 className="relative text-4xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent animate-slide-up">
               Beautiful Screenshots and Mockups
             </h1>

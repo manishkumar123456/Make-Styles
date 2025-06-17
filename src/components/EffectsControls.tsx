@@ -1,6 +1,7 @@
+ // old code
 import { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 import { Smartphone, Laptop, BoxSelect, Layers, Sparkles, Cuboid as Cube, Phone, LampDesk as Desktop, AppWindow as Window, Tablet } from 'lucide-react';
 
 interface EffectsControlsProps {
@@ -220,3 +221,4 @@ export function EffectsControls({
     </div>
   );
 }
+
