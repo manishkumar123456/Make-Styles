@@ -82,12 +82,13 @@ export function HomePage() {
             <Logo />
             <div className="flex items-center gap-4">
   
-  <button className={`px-4 py-2 rounded-lg ${theme === 'dark' ? 'bg-[#1a1a1a] hover:bg-[#2a2a2a]' : 'bg-white hover:bg-gray-50'} transition-all`}>
+  { // we will add login and signup  feature in future
+  /* <button className={`px-4 py-2 rounded-lg ${theme === 'dark' ? 'bg-[#1a1a1a] hover:bg-[#2a2a2a]' : 'bg-white hover:bg-gray-50'} transition-all`}>
     Login
   </button>
   <button className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all">
     Sign Up
-  </button>
+  </button> */}
   <button
     onClick={toggleTheme}
     className={`px-3 py-2 rounded-lg border ${
