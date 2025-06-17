@@ -1,7 +1,19 @@
 import { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Smartphone, Laptop, BoxSelect, Layers, Sparkles, Cuboid as Cube, Phone, LampDesk as Desktop, AppWindow as Window, Tablet } from 'lucide-react';
+import { 
+  Smartphone, 
+  Laptop, 
+  BoxSelect, 
+  Layers, 
+  Sparkles, 
+  Cuboid as Cube, 
+  Phone, 
+  LampDesk as Desktop, 
+  AppWindow as Window, 
+  Tablet,
+  Square,
+  Circle
+} from 'lucide-react';
 
 interface EffectsControlsProps {
   blur: number;
@@ -39,6 +51,14 @@ export function EffectsControls({
   const { theme } = useTheme();
   const [activeEffect, setActiveEffect] = useState<string | null>(null);
   
+  // NEW: Pattern state (self-contained for now)
+  const [activePattern, setActivePattern] = useState<string>('none');
+  const [patternIntensity, setPatternIntensity] = useState(67);
+  const [patternRotation, setPatternRotation] = useState(0);
+  const [patternOpacity, setPatternOpacity] = useState(108);
+  const [patternBlur, setPatternBlur] = useState(0);
+  const [patternBlending, setPatternBlending] = useState('normal');
+  
   const mockups = [
     { name: 'iPhone', icon: Phone, transform: 'rotate(-10deg) perspective(1000px)' },
     { name: 'MacBook', icon: Laptop, transform: 'rotate(-5deg) perspective(2000px) rotateX(45deg)' },
@@ -55,6 +75,16 @@ export function EffectsControls({
     { name: 'Tilt', icon: Layers, transform: 'perspective(1000px) rotateY(15deg)' }
   ];
 
+  // Simplified patterns with basic icons
+  const patterns = [
+    { name: 'None', icon: Square, type: 'none' },
+    { name: 'Circles', icon: Circle, type: 'circles' },
+    { name: 'Dots', icon: Circle, type: 'dots' },
+    { name: 'Grid', icon: Square, type: 'grid' }
+  ];
+
+  const blendModes = ['normal', 'multiply', 'screen', 'overlay', 'soft-light'];
+
   const sliderClass = "w-full accent-blue-500";
   const labelClass = "text-sm text-gray-400 mb-2 block";
   const valueClass = "text-xs text-gray-400 mb-1 block";
@@ -65,7 +95,6 @@ export function EffectsControls({
     onSkewChange(0);
     onScaleChange(100);
     
-    // Parse the transform string and apply appropriate values
     if (transform.includes('rotateX')) {
       const match = transform.match(/rotateX\((\d+)deg\)/);
       if (match) onRotationChange(Number(match[1]));
@@ -124,6 +153,77 @@ export function EffectsControls({
             </button>
           ))}
         </div>
+      </div>
+
+      {/* SIMPLIFIED PATTERN SECTION */}
+      <div>
+        <label className="text-sm text-gray-400 mb-2 block">Background Patterns</label>
+        <div className="grid grid-cols-2 gap-2 mb-4">
+          {patterns.map(({ name, icon: Icon, type }) => (
+            <button
+              key={type}
+              onClick={() => setActivePattern(type)}
+              className={`p-3 rounded-lg flex items-center gap-2 transition-all ${
+                activePattern === type
+                  ? 'bg-blue-500 text-white'
+                  : theme === 'dark'
+                  ? 'bg-[#2a2a2a] hover:bg-[#3a3a3a]'
+                  : 'bg-gray-100 hover:bg-gray-200'
+              }`}
+            >
+              <Icon size={16} />
+              <span className="text-sm">{name}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Show pattern controls only when pattern is selected */}
+        {activePattern !== 'none' && (
+          <div className="space-y-3 pt-2 border-t border-gray-200 dark:border-gray-700">
+            <div>
+              <label className={valueClass}>Intensity ({patternIntensity})</label>
+              <input
+                type="range"
+                min="10"
+                max="200"
+                value={patternIntensity}
+                onChange={(e) => setPatternIntensity(Number(e.target.value))}
+                className={sliderClass}
+              />
+            </div>
+
+            <div>
+              <label className={valueClass}>Opacity ({Math.round(patternOpacity / 2.55)}%)</label>
+              <input
+                type="range"
+                min="0"
+                max="255"
+                value={patternOpacity}
+                onChange={(e) => setPatternOpacity(Number(e.target.value))}
+                className={sliderClass}
+              />
+            </div>
+
+            <div>
+              <label className={valueClass}>Blend Mode</label>
+              <select
+                value={patternBlending}
+                onChange={(e) => setPatternBlending(e.target.value)}
+                className={`w-full p-2 rounded border text-sm ${
+                  theme === 'dark'
+                    ? 'bg-[#2a2a2a] border-gray-600 text-white'
+                    : 'bg-white border-gray-300 text-gray-900'
+                }`}
+              >
+                {blendModes.map((mode) => (
+                  <option key={mode} value={mode}>
+                    {mode.charAt(0).toUpperCase() + mode.slice(1)}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="space-y-4">

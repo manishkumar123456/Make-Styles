@@ -8,13 +8,14 @@ import { TextControls } from './TextControls';
 import { ColorControls } from './ColorControls';
 import { EffectsControls } from './EffectsControls';
 import { SizeControls } from './SizeControls';
-import { Preview } from './Preview';
 import { ActionButtons } from './ActionButtons';
 import { TwitterTemplate } from './templates/TwitterTemplate';
 import { CodeTemplate } from './templates/CodeTemplate';
 import { VideoTemplate } from './templates/VideoTemplate';
 import { useTheme } from '../context/ThemeContext';
 import html2canvas from 'html2canvas';
+import { Preview } from './Preview';
+
 
 export function EditorLayout() {
   const { template } = useParams();

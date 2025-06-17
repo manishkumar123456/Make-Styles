@@ -82,12 +82,12 @@ export function HomePage() {
             <Logo />
             <div className="flex items-center gap-4">
   
-  <button className={`px-4 py-2 rounded-lg ${theme === 'dark' ? 'bg-[#1a1a1a] hover:bg-[#2a2a2a]' : 'bg-white hover:bg-gray-50'} transition-all`}>
+  {/* <button className={`px-4 py-2 rounded-lg ${theme === 'dark' ? 'bg-[#1a1a1a] hover:bg-[#2a2a2a]' : 'bg-white hover:bg-gray-50'} transition-all`}>
     Login
-  </button>
-  <button className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all">
+  </button> */}
+  {/* <button className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all">
     Sign Up
-  </button>
+  </button> */}
   <button
     onClick={toggleTheme}
     className={`px-3 py-2 rounded-lg border ${
@@ -107,7 +107,7 @@ export function HomePage() {
         {/* Hero Section */}
         <div className="text-center mb-16 animate-fade-in">
           <div className="relative">
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg blur opacity-30 animate-pulse"></div>
+            <div className="absolute -inset-1 "></div>
             <h1 className="relative text-4xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent animate-slide-up">
               Beautiful Screenshots and Mockups
             </h1>
