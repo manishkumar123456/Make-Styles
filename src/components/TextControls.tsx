@@ -1,5 +1,7 @@
 //import React from 'react';
+import { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface TextControlsProps {
   text: string;
@@ -53,6 +55,7 @@ export function TextControls({
   onLanguageChange,
 }: TextControlsProps) {
   const { theme } = useTheme();
+  const [isFontDropdownOpen, setIsFontDropdownOpen] = useState(false);
   
   const fontFamilies = [
     { name: 'Inter', style: 'font-sans' },
@@ -93,6 +96,22 @@ export function TextControls({
     'go',
     'rust'
   ];
+
+  const selectedFont = fontFamilies.find(font => font.name === fontFamily) || fontFamilies[0];
+
+  const getCategoryLabel = (style: string) => {
+    switch(style) {
+      case 'font-sans': return 'Sans-serif';
+      case 'font-serif': return 'Serif';
+      case 'font-mono': return 'Monospace';
+      default: return '';
+    }
+  };
+
+  const handleFontSelect = (fontName: string) => {
+    onFontFamilyChange(fontName);
+    setIsFontDropdownOpen(false);
+  };
 
   return (
     <div className="space-y-6 overflow-y-auto">
@@ -150,22 +169,76 @@ export function TextControls({
 
       <div>
         <label className="text-sm text-gray-400 mb-2 block">Font Family</label>
-        <div className="grid grid-cols-2 gap-2">
-          {fontFamilies.map(({ name, style }) => (
-            <button
-              key={name}
-              onClick={() => onFontFamilyChange(name)}
-              className={`p-3 rounded-lg transition-all text-sm ${style} ${
-                fontFamily === name
-                  ? 'bg-blue-500 text-white'
-                  : theme === 'dark'
-                  ? 'bg-[#2a2a2a] hover:bg-[#3a3a3a]'
-                  : 'bg-gray-100 hover:bg-gray-200'
-              }`}
-            >
-              {name}
-            </button>
-          ))}
+        <div className="relative">
+          {/* Dropdown Button */}
+          <button
+            onClick={() => setIsFontDropdownOpen(!isFontDropdownOpen)}
+            className={`w-full px-4 py-3 rounded-lg shadow-sm hover:ring-2 hover:ring-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
+              theme === 'dark' 
+                ? 'bg-[#2a2a2a] text-white border border-gray-600 hover:bg-[#3a3a3a]' 
+                : 'bg-gray-100 text-gray-900 border border-gray-300 hover:bg-gray-200'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <span className={`${selectedFont.style} font-medium`}>
+                  {selectedFont.name}
+                </span>
+                <span className={`text-xs px-2 py-1 rounded ${
+                  theme === 'dark' ? 'bg-gray-600 text-gray-300' : 'bg-gray-200 text-gray-600'
+                }`}>
+                  {getCategoryLabel(selectedFont.style)}
+                </span>
+              </div>
+              {isFontDropdownOpen ? (
+                <ChevronUp className="w-5 h-5 text-gray-400" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-gray-400" />
+              )}
+            </div>
+          </button>
+
+          {/* Dropdown Menu */}
+          {isFontDropdownOpen && (
+            <div className={`absolute z-10 w-full mt-1 rounded-lg shadow-lg max-h-60 overflow-y-auto ${
+              theme === 'dark' 
+                ? 'bg-[#2a2a2a] border border-gray-600' 
+                : 'bg-white border border-gray-300'
+            }`}>
+              {fontFamilies.map((font, index) => (
+                <button
+                  key={font.name}
+                  onClick={() => handleFontSelect(font.name)}
+                  className={`w-full px-4 py-3 text-left hover:ring-2 hover:ring-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all ${
+                    fontFamily === font.name 
+                      ? 'bg-blue-500 text-white' 
+                      : theme === 'dark'
+                      ? 'text-white hover:bg-[#3a3a3a]'
+                      : 'text-gray-900 hover:bg-gray-50'
+                  } ${index === 0 ? 'rounded-t-lg' : ''} ${
+                    index === fontFamilies.length - 1 
+                      ? 'rounded-b-lg' 
+                      : theme === 'dark' ? 'border-b border-gray-600' : 'border-b border-gray-100'
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className={`${font.style} font-medium`}>
+                      {font.name}
+                    </span>
+                    <span className={`text-xs px-2 py-1 rounded ${
+                      fontFamily === font.name
+                        ? 'bg-blue-400 text-white'
+                        : theme === 'dark' 
+                        ? 'bg-gray-600 text-gray-300' 
+                        : 'bg-gray-200 text-gray-600'
+                    }`}>
+                      {getCategoryLabel(font.style)}
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
