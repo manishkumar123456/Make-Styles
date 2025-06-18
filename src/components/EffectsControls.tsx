@@ -18,7 +18,8 @@ import {
 } from 'lucide-react';
 
 
-import { Smartphone, Laptop, BoxSelect, Layers, Sparkles, Cuboid as Cube, Phone, LampDesk as Desktop, AppWindow as Window, Tablet } from 'luc
+
+
 
 interface EffectsControlsProps {
   blur: number;
