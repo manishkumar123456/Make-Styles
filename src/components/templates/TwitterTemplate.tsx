@@ -235,6 +235,7 @@ export function TwitterTemplate({
   const [backgroundImage, setBackgroundImage] = useState('https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=2029&auto=format&fit=crop');
   const [useGradient, setUseGradient] = useState(false);
   const [gradient, setGradient] = useState('linear-gradient(45deg, #1DA1F2, #14171A)');
+  
 
   const handleTweetUrlSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -292,16 +293,16 @@ export function TwitterTemplate({
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-6">
       <div 
-        className="w-full max-w-[600px] rounded-2xl p-6 shadow-xl relative overflow-hidden"
+        className="w-full max-w-[8000px] rounded-2xl p-12 shadow-xl relative overflow-hidden"
         style={commonCardStyles}
       >
-        <div className={`backdrop-blur-md rounded-xl p-6 ${theme === 'dark' ? 'bg-black/50' : 'bg-white/90'}`}>
+        <div className={`backdrop-blur-md rounded-xl p-8 ${theme === 'dark' ? 'bg-black/50' : 'bg-white/90'}`}>
           {showTweet && getTweetId(tweetUrl) ? (
             <Tweet id={getTweetId(tweetUrl)!} />
           ) : (
             <>
               <form onSubmit={handleTweetUrlSubmit} className="mb-6">
-                <div className="flex gap-2">
+                <div className="flex gap-4">
                   <input
                     type="text"
                     placeholder="Paste Tweet URL here"

@@ -1,5 +1,7 @@
+ // old code
 import { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
+
 import { 
   Smartphone, 
   Laptop, 
@@ -14,6 +16,9 @@ import {
   Square,
   Circle
 } from 'lucide-react';
+
+
+import { Smartphone, Laptop, BoxSelect, Layers, Sparkles, Cuboid as Cube, Phone, LampDesk as Desktop, AppWindow as Window, Tablet } from 'luc
 
 interface EffectsControlsProps {
   blur: number;
@@ -320,3 +325,4 @@ export function EffectsControls({
     </div>
   );
 }
+

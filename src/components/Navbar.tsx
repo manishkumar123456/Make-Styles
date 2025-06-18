@@ -33,41 +33,40 @@ export function Navbar({ onReset, onTemplateSelect, onHomeClick }: NavbarProps) 
     return names[template] || template;
   };
 
-  const buttonBaseClass = `px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 ${
-    theme === 'dark' 
-      ? 'hover:bg-[#3a3a3a] bg-[#2a2a2a]' 
-      : 'hover:bg-gray-200 bg-gray-100'
-  }`;
+  const buttonBaseClass = `px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 ${theme === 'dark'
+    ? 'hover:bg-[#3a3a3a] bg-[#2a2a2a]'
+    : 'hover:bg-gray-200 bg-gray-100'
+    }`;
 
   return (
     <nav className="sticky top-0 z-50 flex justify-center items-center gap-4 mb-6 py-4 backdrop-blur-sm bg-opacity-90 dark:bg-opacity-90 bg-white dark:bg-[#0f0f0f]">
-      <button 
+      <button
         onClick={onHomeClick}
         className={buttonBaseClass}
       >
         <Home size={20} />
         Home
       </button>
-      
-      <div className="relative">
-        <button 
-          onMouseEnter={() => setIsDropdownOpen(true)}
-          onMouseLeave={() => setIsDropdownOpen(false)}
-          className={buttonBaseClass}
-        >
+
+      <div
+        className="relative inline-block"
+        onMouseEnter={() => setIsDropdownOpen(true)}
+        onMouseLeave={() => setIsDropdownOpen(false)}
+      >
+        {/* Trigger Button */}
+        <button className={buttonBaseClass}>
           Templates
-          <ChevronDown size={20} className={`transform transition-transform duration-200 ${
-            isDropdownOpen ? 'rotate-180' : ''
-          }`} />
+          <ChevronDown
+            size={20}
+            className={`transform transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""
+              }`}
+          />
         </button>
-        
+
         {isDropdownOpen && (
-          <div 
-            onMouseEnter={() => setIsDropdownOpen(true)}
-            onMouseLeave={() => setIsDropdownOpen(false)}
-            className={`absolute top-full mt-2 w-48 rounded-lg shadow-lg ${
-              theme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-white'
-            }`}
+          <div
+            className={`absolute top-full mt-1 w-48 rounded-lg shadow-lg z-50 transition-all ${isDropdownOpen ? "opacity-100 visible" : "opacity-0 invisible"
+              } ${theme === "dark" ? "bg-[#1a1a1a]" : "bg-white"}`}
           >
             {templates.map((template) => (
               <button
@@ -76,11 +75,8 @@ export function Navbar({ onReset, onTemplateSelect, onHomeClick }: NavbarProps) 
                   onTemplateSelect(template);
                   setIsDropdownOpen(false);
                 }}
-                className={`block w-full text-left px-4 py-2 first:rounded-t-lg last:rounded-b-lg ${
-                  theme === 'dark'
-                    ? 'hover:bg-[#2a2a2a]'
-                    : 'hover:bg-gray-100'
-                } transition-colors duration-200`}
+                className={`block w-full text-left px-4 py-2 first:rounded-t-lg last:rounded-b-lg ${theme === "dark" ? "hover:bg-[#2a2a2a]" : "hover:bg-gray-100"
+                  } transition-colors duration-200`}
               >
                 {getTemplateName(template)}
               </button>
@@ -89,7 +85,7 @@ export function Navbar({ onReset, onTemplateSelect, onHomeClick }: NavbarProps) 
         )}
       </div>
 
-      <button 
+      <button
         onClick={onReset}
         className={buttonBaseClass}
       >
